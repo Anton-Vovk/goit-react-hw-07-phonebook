@@ -33,7 +33,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  handleChange: event => dispatch(filterContacts(event.target.value)),
+  inputHandler: event => dispatch(filterContacts(event.target.value)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);
