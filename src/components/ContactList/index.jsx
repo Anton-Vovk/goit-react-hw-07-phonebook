@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { deleteContact } from '../../redux/phonebook/phonebook-actions';
+import { deleteContact } from '../../redux/phonebook/phonebook-operations';
+import { getFilteredContacts } from '../../redux/phonebook/phonebook-selectors';
 import styles from './ContactList.module.css';
 
 const ContactList = ({ contacts, deleteContact }) => {
@@ -30,19 +31,9 @@ ContactList.propTypes = {
   deleteContact: PropTypes.func.isRequired,
 };
 
-const contactFilter = (contacts, filterStr) => {
-  return contacts.filter(contact =>
-    contact.name.toLowerCase().includes(filterStr.toLowerCase()),
-  );
-};
-
-const mapStateToProps = state => {
-  const { items, filter } = state.phonebook;
-
-  return {
-    contacts: contactFilter(items, filter),
-  };
-};
+const mapStateToProps = state => ({
+  contacts: getFilteredContacts(state),
+});
 
 const mapDispatchToProps = dispatch => ({
   deleteContact: id => dispatch(deleteContact(id)),

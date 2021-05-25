@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { addContact } from '../../redux/phonebook/phonebook-actions';
+import { addContact } from '../../redux/phonebook/phonebook-operations';
+import { getContacts } from '../../redux/phonebook/phonebook-selectors';
 import styles from './ContactForm.module.css';
 
 class ContactForm extends Component {
@@ -83,7 +84,7 @@ class ContactForm extends Component {
 }
 
 const mapStateToProps = state => ({
-  myContacts: state.phonebook.items,
+  myContacts: getContacts(state),
 });
 
 const mapDispatchToProps = dispatch => ({

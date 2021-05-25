@@ -1,5 +1,5 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
-import logger from 'redux-logger';
+
 import phonebookReducer from './phonebook/phonebook-reducer';
 import {
   persistStore,
@@ -16,7 +16,7 @@ import storage from 'redux-persist/lib/storage';
 const phonebookPersistConfig = {
   key: 'phonebook',
   storage,
-  blacklist: ['filter'],
+  blacklist: ['filter', 'items'],
 };
 
 const middleware = [
@@ -25,7 +25,6 @@ const middleware = [
       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
     },
   }),
-  logger,
 ];
 
 const store = configureStore({

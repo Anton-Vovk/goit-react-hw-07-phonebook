@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { filterContacts } from '../../redux/phonebook/phonebook-actions';
+import { getFilter } from '../../redux/phonebook/phonebook-selectors';
 import styles from '../ContactForm/ContactForm.module.css';
 
 const Filter = ({ filter, inputHandler }) => {
@@ -28,11 +29,11 @@ Filter.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  filter: state.phonebook.filter,
+  filter: getFilter(state),
 });
 
 const mapDispatchToProps = dispatch => ({
-  inputHandler: event => dispatch(filterContacts(event.target.value)),
+  handleChange: event => dispatch(filterContacts(event.target.value)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);
