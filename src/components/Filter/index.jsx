@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { filterContacts } from '../../redux/phonebook/phonebook-actions';
 import { getFilter } from '../../redux/phonebook/phonebook-selectors';
-import styles from '../ContactForm/ContactForm.module.css';
+import styles from '../Filter/Filter.module.css';
 
 const Filter = ({ filter, inputHandler }) => {
   return (
-    <div>
-      <h4>Find contacts by name</h4>
+    <>
+      <h4 className={styles.title}>Find contacts by name </h4>
       <label className={styles.label}>
         <input
           onChange={inputHandler}
@@ -19,7 +19,7 @@ const Filter = ({ filter, inputHandler }) => {
           className={styles.input}
         ></input>
       </label>
-    </div>
+    </>
   );
 };
 
